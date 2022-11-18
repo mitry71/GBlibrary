@@ -1,0 +1,159 @@
+@charset "utf-8";
+#main > #container {
+    display: flex;
+    box-sizing: border-box;
+}
+/* 사이드메뉴 */
+#container > .snb {
+    box-sizing: border-box;
+    width: 200px;
+    border-right: 1px solid #ccc;
+    /* padding: 20px; */
+}
+#container > .snb > h2 {
+    background: url(../images/gangbuk_title.png) no-repeat 0 0;
+    color: #fff;
+    height: 140px;
+    line-height: 140px;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.snb > ul > li {
+    border-bottom: 1px solid #ccc;
+}
+.snb > ul > li > a {
+    font-size: 0.9rem;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 20px;
+}
+.snb > ul > li > a:hover {
+    color: #212529;
+}
+/* .snb > ul > li > #join {
+    background-color: aliceblue;
+    color: rgb(5, 5, 180);
+} */
+/* .snb */
+
+/* 메인컨텐츠 */
+#container > .main-content {
+    width: 1040px;
+    margin: 40px 80px;
+}
+.main-content > h2 {
+    padding-bottom: 10px;
+    float: left;
+}
+.main-content > #location {
+    border-bottom: 2px solid #212529;
+    font-size: 0.9rem;
+    text-align: right;
+}
+.main-content > #location::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+p#formSign {
+    text-align: right;
+    font-size: 0.9rem;
+    padding: 30px 0 8px;
+    border-bottom: 2px solid rgb(220, 218, 218);
+    position: relative;
+}
+strong.require {
+    display: inline-block;
+    width: 14px;
+    height: 100%;
+    text-indent: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+strong.require::before {
+    content: 's';
+    font-family: 'libraryIcon';
+    position: relative;
+    top: 8px;
+    left: -14px;
+    font-size: 0.8rem;
+    color: #c10547;
+}
+
+/* #joinForm */
+#joinForm fieldset > div {
+    width: 1040px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+a#idCheck, a.findZipcode {
+    background-color: aliceblue;
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    margin-left: 5px;
+    border-radius: 4px;
+}
+#joinForm label:not([class="radio"]) {
+    display: inline-block;
+    width: 140px;
+    padding: 13px 20px 14px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #666;
+    background-color: #fffcef;
+}
+div.divAddress {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+div.labelAddress, div.personalInfoTime {
+    align-self: stretch;
+    background-color: #fffcef;
+    width: 180px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+label.labelAddress {
+    vertical-align: middle;
+}
+
+div.radio {
+    width: 900px;
+    padding: 10px 0;
+}
+div.radio > input {
+    padding: 0 3px 0;
+}
+div.radio > p {
+    font-size: 0.9rem;
+}
+label.radio {
+    padding: 0 7px 0 2px;
+}
+#joinForm fieldset > div.btnArea {
+    display: block;
+    width: 1000px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+#joinForm fieldset > div.btnArea > button {
+    font-size: 1.1rem;
+    padding: 5px 9px;
+    margin: 5px;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2),
+                -1px -1px 4px rgba(0,0,0,0.1);
+}
+/* .main-content */

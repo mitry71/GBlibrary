@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강북문화정보도서관</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style type="text/css">
+    	.notice_board:hover, #notice_board:focus {
+    		cursor:pointer;
+    	}
+    </style>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        let smartPhones=[
+            'iphone','ipod','ipad','opera mini','opera mobi','android','webos','windows ce','blackberry','iemobile','sonyericsson'
+        ];
+        //스마트폰 구분
+        for(let i in smartPhones) {
+            if(navigator.userAgent.toLowerCase().match(new RegExp(smartPhones[i]))) {
+                document.location='http://arachne199.dothome.co.kr/mindex.html'; //자기 문서의 주소
+            }
+        }
+        /* function fn_notice() {
+        	let contextPath="http://localhost:8080/library/board/listArticles.do";
+        	let form=document.createElement("form");
+        	form.setAttribute("method","post");
+        	form.setAttribute("action",contextPath);
+        	document.body.appendChild(form);
+        	form.submit();
+        } */
+    </script>
+</head>
+<body>
+    <!-- 건너뛰기 링크 -->
+    <div id="skipNav">
+        <a href="#header">메인메뉴 바로가기</a>
+        <a href="#main">본문 바로가기</a>
+        <a href="#footer">하단메뉴 바로가기</a>
+    </div>
+
+    <div id="wrap">
+
+        <!-- 헤더 영역 -->
+        <header id="header">
+
+            <!-- 구립도서관 사이트맵 -->
+            <div class="lib-link">
+                <h2 class="hidden">강북구 내 타 도서관 사이트로 이동</h2>
+                <ul>
+                    <li><a href="#">강북구립도서관</a></li>
+                    <li><a href="index.html">강북문화정보도서관</a></li>
+                    <li><a href="#">강북청소년문화정보도서관</a></li>
+                    <li><a href="#">솔샘문화정보도서관</a></li>
+                    <li><a href="#">송중문화정보도서관</a></li>
+                    <li><a href="#">수유문화정보도서관</a></li>
+                    <li><a href="#">미아문화정보도서관</a></li>
+                    <li><a href="#">삼각산어린이도서관</a></li>
+                    <li><a href="#">전자책도서관</a></li>
+                    <li><a href="#">새마을문고</a></li>
+                </ul>
+            </div>
+
+            <div class="default-menu">
+                <!-- 로고 -->
+                <h1 class="logo">
+                    <a href="index.html">
+                        <img src="images/gangbuk_logo.png" alt="로고">
+                    </a>
+                </h1>
+                <!-- 사이드 메뉴 -->
+                <ul class="snb">
+                    <li><a href="login.jsp" id="log_in">로그인</a></li>
+                    <li><a href="login.jsp" id="modInfo">회원정보수정</a></li>
+                    <script>
+                    	let contextPath="http://localhost:8080/library";
+	                    $.ajax({
+	                		type:"post",
+	                		dataType:"text",
+	                		async:true,
+	                		url: contextPath + "/member/isLoggedIn",
+	                		success:function (isLogin, textStatus) {
+	                			if(isLogin == "true") {
+	                				$('#log_in').text("로그아웃").attr('href',contextPath+'/member/logout.do');
+	                				$('#modInfo').attr('href',contextPath+'/member/modinfoForm.do');
+	                			}else {
+	                				$('#log_in').text("로그인").attr('href',contextPath+'/member/loginForm.do');
+	                			}
+	                		}
+	                	});
+                    </script>
+                    <li><a href="join.jsp">회원가입</a></li>
+                    <li>
+                        <span>글자크기</span>
+                        <a href="#" id="largerFont">글자크기 크게</a>
+                        <a href="#" id="smallerFont">글자크기 작게</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 메인 메뉴 -->
+            <nav>
+                <h2 class="hidden">메인 메뉴</h2>
+                <ul class="mainMenu">
+                    <li>
+                        <a href="#">자료이용</a>
+                        <ul class="subMenu">
+                            <li><a href="#">통합 검색</a></li>
+                            <li><a href="#">신착도서 검색</a></li>
+                            <li><a href="#">간행물 검색</a></li>
+                            <li><a href="#">비도서 검색</a></li>
+                            <li><a href="#">인기대출도서 검색</a></li>
+                            <li><a href="#">추천도서</a></li>
+                            <li><a href="theme.jsp">인기테마 검색</a></li>
+                            <li><a href="#">스마트도서관</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">전자책 도서관</a>
+                        <ul class="subMenu">
+                            <li><a href="#">E-Book</a></li>
+                            <li><a href="#">E-Learning</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">참여마당</a>
+                        <ul class="subMenu">
+                            <!-- <li><a class="notice_board" onclick="fn_notice()">공지사항</a></li> -->
+                            <li><a class="notice_board" href="http://localhost:8080/library/board/listArticles.do">공지사항</a></li>
+                            <li><a href="#">행사안내</a></li>
+                            <li><a href="#">자주하는 질문</a></li>
+                            <li><a href="#">단순질문함</a></li>
+                            <li><a href="#">고객의견함</a></li>
+                            <li><a href="#">자료실</a></li>
+                            <li><a href="#">설문조사</a></li>
+                            <li><a href="#">자원봉사자 모집</a></li>
+                            <li><a href="#">모두의 소설</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">강좌/문화행사</a>
+                        <ul class="subMenu">
+                            <li><a href="#">문화교실 안내</a></li>
+                            <li><a href="#">문화교실 신청</a></li>
+                            <li><a href="#">문화행사 안내</a></li>
+                            <li><a href="#">문화행사 신청</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">도서관 안내</a>
+                        <ul class="subMenu">
+                            <li><a href="#">인사말 &amp; 연혁</a></li>
+                            <li><a href="#">시설 &amp; 자료현황</a></li>
+                            <li><a href="#">이용안내</a></li>
+                            <li><a href="#">이용자 서비스 헌장</a></li>
+                            <li><a href="#">조직도</a></li>
+                            <li><a href="#">상호대차&amp;지하철 예약 대출</a></li>
+                            <li><a href="#">상상공작소</a></li>
+                            <li><a href="#">책이음 서비스</a></li>
+                            <li><a href="#">책나래 서비스</a></li>
+                            <li><a href="#">북스타트</a></li>
+                            <li><a href="#">오시는 길</a></li>
+                            <li><a href="#">번동 U-도서관</a></li>
+                            <li><a href="#">새마을문고</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">나의 도서관</a>
+                        <ul class="subMenu">
+                            <li><a href="#">대출･연장･예약･조회</a></li>
+                            <li><a href="#">희망도서 신청</a></li>
+                            <li><a href="#">바구니 보기</a></li>
+                            <li><a href="#">검색 History</a></li>
+                            <li><a href="#">관심문화교실</a></li>
+                            <li><a href="#">나의 참여내역</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="submenuBg"></div>
+            </nav>
+
+        </header>
+
+        <!-- 메인 영역 -->
+        <div id="main">
+
+            <!-- 도서 검색 영역 -->
+            <div class="main-search">
+                <h2 class="hidden">도서 검색창</h2>
+                <form action="#" method="post" id="main-search-form" name="main-search-form">
+                    <fieldset>
+                        <legend>검색창</legend>
+                        <select id="main-search-select">
+                            <option value="t">통합검색</option>
+                            <option value="l">소장자료</option>
+                            <option value="e">전자자료</option>
+                        </select>
+                        <input type="text" id="main-search-input">
+                        <button type="submit">검색</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- 컨텐츠 영역 -->
+            <div class="main-content">
+
+                <!-- 퀵메뉴 -->
+                <div id="quick-menu">
+                    <ul>
+                        <li><a href="#"><span>상호대차</span></a></li>
+                        <li><a href="#"><span>이용안내</span></a></li>
+                        <li><a href="http://localhost:8080/library/board/listArticles.do"><span>공지사항</span></a></li>
+                        <li><a href="#"><span>문화행사 신청</span></a></li>
+                        <li><a href="#"><span>상상공작소</span></a></li>
+                        <li><a href="#"><span>도서대출 및 연기</span></a></li>
+                        <li><a href="#"><span>지하철역 예약대출</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- 공지사항, 일정 -->
+                <div class="top">
+                    <div class="main-notice">
+                        <div class="notice-head">
+                            <h3>공지사항</h3>
+                            <!-- <a class="notice_board" onclick="fn_notice()">전체보기 -->
+                            <a class="notice_board" href="http://localhost:8080/library/board/listArticles.do">전체보기
+                                <svg class="svg-icon" width="12" height="12" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M6,4l12,8L6,20V4z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                <!-- <path d="M6,4l12,8L6,20V4z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path> -->
+                            </a>
+                        </div>
+                        <!-- .notice-head -->
+                        <div class="notice-content">
+                            <div class="notice-banner">
+                                <div class="notice-image">
+                                    <a href="#"><img src="images/notice-image.jpg" alt="지구가 보내는 경고"></a>
+                                    <a href="#"><img src="images/elwlxjfdurfid.png" alt="디지털역량 수강생모집"></a>
+                                    <a href="#"><img src="images/clfdnjfxmrwlq.png" alt="초등자료실 월간 큐레이션"></a>
+                                    <a href="#"><img src="images/rlgndnlrl.jpg" alt="기후위기 교육"></a>
+                                    <a href="#"><img src="images/dldbrtk.png" alt="독립운동가 이육사"></a>
+                                    <a href="#"><img src="images/dufmaehrtj.png" alt="여름 독서교실"></a>
+                                    <a href="#"><img src="images/dntnghldnjs.jpg" alt="우수회원 선정"></a>
+                                </div>
+                            </div>
+                            <div class="notice-button-bar">
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                                <div class="notice-button"></div>
+                            </div>
+                            <!-- .notice-banner -->
+                            <div class="notice-text">
+                                <ul>
+                                    <li>
+                                        <a href="#">강북구립도서관 인스타그램&유튜브를 소개합니다!</a>
+                                        <span>06-24</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">강북문화정보도서관 &lt;이야기가 있는 코딩&gt; 참가자 모집안내</a>
+                                        <span>06-23</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">강북청소년문화정보도서관 상상공작소 7월 프로그램 참가자 모집</a>
+                                        <span>06-22</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">강북청소년문화정보도서관 7월 디지털 역량교육 수강생 모집</a>
+                                        <span>06-21</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">2022년 강북문화교실 3분기 접수 안내</a>
+                                        <span>06-20</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">강북문화정보도서관 상상공작소 기획전시 [메이킹, 가드닝 그리고 ESG] 전시 및 체험 안내</a>
+                                        <span>06-16</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">&lt;메타버스 타고 떠나는 인문학 여행(문학)&gt; 프로그램 참여자 모집</a>
+                                        <span>06-16</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">6월 문화가 있는 날 : 도서관 피크닉</a>
+                                        <span>06-16</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">[강북청소년] 7월 사서샘과 책읽기 참여자 모집</a>
+                                        <span>06-15</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">[강북청소년] 7월 강북체험동화마을&lt;해님달님&gt; 참여자 모집안내</a>
+                                        <span>06-15</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .notice-text -->
+                        </div>
+                        <!-- .notice-content -->
+                    </div>
+                    <!-- .main-notice -->
+
+                    <div class="calendar">
+                        <ul class="box">
+                            <li class="holiday">
+                                <h3>이달의 휴관</h3>
+                                <dl>
+                                    <dt>6月</dt>
+                                    <dd>
+                                        <span>1</span>
+                                        <span>6</span>
+                                        <span>13</span>
+                                        <span>27</span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <!-- .holiday -->
+                            <li class="culture-list">
+                                <h3>문화행사</h3>
+                                <a href="#">전체보기
+                                    <svg class="svg-icon" width="12" height="12" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M6,4l12,8L6,20V4z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                    <!-- <path d="M6,4l12,8L6,20V4z"></path>
+                                    <path d="M0 0h24v24H0z" fill="none"></path> -->
+                                </a>
+                                <span class="weekday">토</span>
+                                <a href="#">6월 문화가 있는 날 : 도서관 피크닉</a>
+                                <div>
+                                    <span>06-25</span>
+                                    <span>09:00~16:00</span>
+                                    <span>강북문화정보도서관</span>
+                                </div>
+                                <span class="weekday">수</span>
+                                <a href="#">이야기가 있는 코딩 / 초등 4~6학년</a>
+                                <div>
+                                    <span>07-06</span>
+                                    <span>16:00~18:00</span>
+                                    <span>4층 상상공작소</span>
+                                </div>
+                                <span class="weekday">화</span>
+                                <a href="#">메타버스 타고 떠나는 인문학 여행(문학)</a>
+                                <div>
+                                    <span>07-12</span>
+                                    <span>16:00~18:00</span>
+                                    <span>강북문화정보도서관 3층 강의실</span>
+                                </div>
+                            </li>
+                            <!-- .culture-list -->
+                        </ul>
+                        <!-- .box -->
+                    </div>
+                    <!-- .calendar -->
+                </div>
+                <!-- .top -->
+
+                <!-- 탭 메뉴 - 신착도서, 추천도서, 베스트대출 -->
+                <div class="bottom">
+                    
+                    <!-- 신착도서 -->
+                    <div>
+                        <h3><a href="#new" id="new_book" class="book_menu_tab">신착도서</a></h3>
+                        <ul id="new" class="book_tab">
+                            <a href="#" class="more">더보기
+                                <svg class="svg-icon" width="12" height="12" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M6,4l12,8L6,20V4z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                <path d="M6,4l12,8L6,20V4z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </a>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder" id="meros">
+                                        <img src="https://image.aladin.co.kr/product/29613/2/cover500/8937464039_1.jpg" alt="달려라 메로스">
+                                        </div>
+                                        <p>달려라 메로스</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/29625/58/cover500/k742838376_1.jpg" alt="소극 다음은 무엇?">
+                                        </div>
+                                        <p>소극 다음은 무엇?</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/29304/77/cover500/k522837507_1.jpg" alt="자본론">
+                                        </div>
+                                        <p>자본론</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/28034/46/cover500/8946073241_1.jpg" alt="우리는 세계를 파괴하지 않고 세계를 먹여 살릴 수 있는가">
+                                        </div>
+                                        <p>우리는 세계를 파괴하지 않고 세계를 먹여 살릴 수 있는가</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/27852/76/cover500/k102734685_1.jpg" alt="게임하는 뇌">
+                                        </div>  
+                                        <p>게임하는 뇌</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/29528/90/letslook/8932474702_f.jpg" alt="한국 팝의 고고학 1980">
+                                        </div>
+                                        <p>한국 팝의 고고학 1980</p>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .new -->
+
+                    <!-- 추천도서 -->
+                    <div>
+                        <h3 class="recom"><a href="#recommended" id="recom_book" class="book_menu_tab">추천도서</a></h3>
+                        <ul id="recommended" class="book_tab">
+                            <a href="#" class="more">더보기
+                                <svg class="svg-icon" width="12" height="12" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M6,4l12,8L6,20V4z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                <path d="M6,4l12,8L6,20V4z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </a>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/715/47/letslook/896437116X_f.jpg" alt="민주화 이후의 민주주의">
+                                        </div>
+                                        <p>민주화 이후의 민주주의</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/1212/95/letslook/8991221831_f.jpg" alt="프랑스 혁명에서 파리 코뮌까지, 1789~1871">
+                                        </div>
+                                        <p>프랑스 혁명에서 파리 코뮌까지, 1789~1871</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/87/9/cover500/s922637499_1.jpg" alt="코스모스">
+                                        </div>
+                                        <p>코스모스</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/10962/5/cover500/k102531669_3.jpg" alt="실크로드 세계사">
+                                        </div>
+                                        <p>실크로드 세계사</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/29528/58/cover500/k472837443_2.jpg" alt="언더그라운드 레일로드">
+                                        </div>
+                                        <p>언더그라운드 레일로드</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/18458/19/cover500/8971999276_1.jpg" alt="3월 1일의 밤">
+                                        </div>
+                                        <p>3월 1일의 밤</p>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .recommended -->
+
+                    <!-- 베스트대출 -->
+                    <div>
+                        <h3 class="be"><a href="#best" id="best_book" class="book_menu_tab">베스트 대출도서</a></h3>
+                        <ul id="best" class="book_tab">
+                            <a href="#" class="more">더보기
+                                <svg class="svg-icon" width="12" height="12" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M6,4l12,8L6,20V4z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                                <path d="M6,4l12,8L6,20V4z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </a>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/28962/10/letslook/8954683371_f.jpg" alt="H마트에서 울다">
+                                        </div>
+                                        <p>H마트에서 울다</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/28784/70/letslook/8934949678_f.jpg" alt="우리는 여전히 삶을 사랑하는가">
+                                        </div>
+                                        <p>우리는 여전히 삶을 사랑하는가</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/25470/6/letslook/S962735043_f.jpg" alt="공정하다는 착각">
+                                        </div>
+                                        <p>공정하다는 착각</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/22872/79/letslook/K992636841_f.jpg" alt="지적 대화를 위한 넓고 얕은 지식">
+                                        </div>
+                                        <p>지적 대화를 위한 넓고 얕은 지식</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/8864/8/letslook/8993178690_f.jpg" alt="지리의 힘">
+                                        </div>
+                                        <p>지리의 힘</p>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#">
+                                        <div class="bookborder">
+                                        <img src="https://image.aladin.co.kr/product/47/75/cover500/8955591276_2.jpg" alt="죽음 앞의 인간">
+                                        </div>
+                                        <p>죽음 앞의 인간</p>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .best -->
+                </div>
+                <!-- .bottom -->
+            </div>
+            <!-- .main-content -->
+
+            <!-- 배너 -->
+            <div id="banner">
+                <div class="banner-box">
+                    <div class="box">
+                        <a href="https://www.nl.go.kr" target="_blank"><img src="images/rnrflqwnddkd.jpg" alt="국립중앙도서관"></a>
+                        <a href="https://www.nanet.go.kr/main.do"><img src="images/rnrghlehtjrhks.jpg" alt="국회도서관"></a>
+                        <a href="https://lib.seoul.go.kr"><img src="images/tjdnfehtjrhks.jpg" alt="서울도서관"></a>
+                        <a href="https://www.nl.go.kr/NL/contents/N30502000000.do"><img src="images/tktjdprp.jpg" alt="사서에게 물어보세요"></a>
+                        <a href="https://www.kpipa.or.kr/info/recommBookShareList.do?board_id=170"><img src="images/dlekfdmlcncjs.jpg" alt="이달의 추천도서"></a>
+                        <a href="https://www.kpipa.or.kr/info/recommYouthBook.do?board_id=36"><img src="images/cjdthsuscncjs.jpg" alt="청소년 추천도서"></a>
+                        <a href="#"><img src="images/flejtm.jpg" alt="강북리더스클럽"></a>
+                        <a href="#"><img src="images/corqkek.jpg" alt="책바다"></a>
+                        <a href="http://dream.nld.go.kr/dream/index.do"><img src="images/booknarae.jpg" alt="책나래"></a>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <button type="button" class="previous">이전</button>
+                    <button type="button" class="pause">멈춤</button>
+                    <button type="button" class="next">다음</button>
+                </div>
+            </div>
+            <!-- .banner -->
+        </div>
+
+        <!-- 푸터 영역 -->
+        <footer id="footer">
+            <div class="footerInner">
+                <!-- 로고 -->
+                <a href="index.html"><img src="images/gangbuk_bottom_logo.png" alt="강북문화정보도서관"></a>
+                <!-- 주소, 연락처, 저작권, 방침 -->
+                <div class="foot-info">
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이메일집단수집거부</a></li>
+                        <li><a href="#">우리지역도서관</a></li>
+                        <li><a href="#">영상정보처리기기운영 관리 방침</a></li>
+                    </ul>
+                    <div class="add">
+                        <address>01151 서울특별시 강북구 오현로 145 (번동)</address>
+                        <span>전화 02-944-3100</span>
+                        <span>팩스 02-944-3139</span>
+                        <span>사업자등록번호 : 210-83-02118(강북구청)</span>
+                    </div>
+                    <div class="copy">
+                        COPYRIGHT 2010-2017 GANGBUK CULTURE INFORMATION LIBRARY ALL RIGHT RESERVED.
+                    </div>
+                </div>
+                <!-- .foot-info -->
+                <!-- 기타 버튼 -->
+                <div class="etc">
+                    <a href="#">도서관위치 SMS 전송</a>
+                    <a href="index.html" class="btnTop">TOP</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="js/common2copy.js"></script>
+<script src="js/indexcopy.js"></script>
+</html>

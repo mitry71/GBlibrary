@@ -1,0 +1,85 @@
+@charset "utf-8";
+#main > #container {
+    display: flex;
+    box-sizing: border-box;
+}
+/* 사이드메뉴 */
+#container > .snb {
+    box-sizing: border-box;
+    width: 200px;
+    border-right: 1px solid #ccc;
+}
+#container > .snb > h2 {
+    background: url(../images/gangbuk_title.png) no-repeat 0 0;
+    color: #fff;
+    height: 140px;
+    line-height: 140px;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.snb > ul > li {
+    border-bottom: 1px solid #ccc;
+}
+.snb > ul > li > a {
+    font-size: 0.9rem;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 20px;
+}
+.snb > ul > li > a:hover {
+    color: #212529;
+}
+/* .snb */
+
+/* 메인컨텐츠 */
+#container > .main-content {
+    width: 1040px;
+    margin: 40px 80px;
+    position: relative;
+}
+.main-content > h2 {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    border-bottom: 2px solid #212529;
+    padding-bottom: 20px;
+    
+}
+.main-content > #location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* #loginForm */
+#loginForm fieldset {
+    padding-top: 10px;
+}
+#loginForm fieldset > div {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 15px;
+}
+#loginForm fieldset > div.btnArea {
+    display: block;
+    width: 600px;
+    border: none;
+    text-align: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+}
+#loginForm fieldset > div.btnArea > button {
+    font-size: 1.1rem;
+    padding: 5px 9px;
+    margin: 5px 0 19px;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2),
+                -1px -1px 4px rgba(0,0,0,0.1);
+}
+/* .main-content */

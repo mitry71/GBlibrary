@@ -1,0 +1,191 @@
+@charset "utf-8";
+#main > #container {
+    display: flex;
+    box-sizing: border-box;
+}
+/* 사이드메뉴 */
+#container > .snb {
+    box-sizing: border-box;
+    width: 200px;
+    border-right: 1px solid #ccc;
+}
+#container > .snb > h2 {
+    background: url(../images/gangbuk_title.png) no-repeat 0 0;
+    color: #fff;
+    height: 140px;
+    line-height: 140px;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.snb > ul > li {
+    border-bottom: 1px solid #ccc;
+}
+.snb > ul > li > a {
+    font-size: 0.9rem;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 20px;
+}
+.snb > ul > li > a:hover {
+    color: #212529;
+}
+/* .snb */
+
+/* 메인컨텐츠 */
+#container > .main-content {
+    width: 1040px;
+    margin: 40px 80px 80px;
+}
+/* 인기테마검색 */
+.main-content > h2 {
+    padding-bottom: 10px;
+    float: left;
+}
+.main-content > #location {
+    border-bottom: 2px solid #212529;
+    font-size: 0.9rem;
+    text-align: right;
+}
+.main-content > #location::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+/* 자료검색 제목 */
+.main-content > h4::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("../images/gangbuk_bul.png") no-repeat;
+    position: relative;
+    top: 2px;
+    padding-right: 5px;
+}
+/* 테마검색 폼 */
+.main-content > #theme-search {
+    background: url("../images/search_bg.png");
+}
+#theme-search > #search {
+    padding: 30px;
+}
+#search > div.flex-row {
+    border-bottom: 1px solid #fff;
+    padding: 20px 0;
+}
+div.flex-row {
+    display: flex;
+    align-items: center;
+}
+div.flex-row-left {
+    width: 110px;
+    padding-left: 30px;
+}
+div.flex-row-right {
+    width: 800px;
+}
+label, input, button {
+    font-size: 0.9rem;
+}
+
+/* ?? */
+input[type=checkbox], input[type=radio] {
+    opacity: 0;
+}
+
+label > span:hover {
+    background-color: rgb(254, 221, 66);
+    cursor: pointer;
+}
+
+/* 대출기간, 성별 */
+div.radio {
+    display: flex;
+    /* margin-right: 20px; */
+    border-left: 1px solid #ccc;
+}
+div.radio > label {
+    display: inline-block;
+    width: 115px;
+    height: 33px;
+    line-height: 33px;
+    position: relative;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    /* padding: 5px 0; */
+    background-color: #fff;
+}
+div.radio > label > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 33px;
+}
+div.calendar {
+    margin-left: 5px;
+}
+
+/* 연령, 대주제 */
+div.age, div.subject {
+    display: flex;
+    flex-wrap: wrap;
+    border-left: 1px solid #ccc;
+}
+div.age > label, div.subject > label {
+    display: inline-block;
+    width: 115px;
+    height: 33px;
+    line-height: 33px;
+    position: relative;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    /* padding: 5px 0; */
+    background-color: #fff;
+}
+div.age > label:nth-of-type(1), div.age > label:nth-of-type(2), div.age > label:nth-of-type(3), div.age > label:nth-of-type(4) {
+    border-bottom: none;
+}
+div.subject > label:nth-of-type(1), div.subject > label:nth-of-type(2), div.subject > label:nth-of-type(3), div.subject > label:nth-of-type(4), div.subject > label:nth-of-type(5) {
+    border-bottom: none;
+}
+div.age > label > span, div.subject > label > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 33px;
+}
+/* 출력건수 */
+div.btnArea {
+    margin: 30px auto 0;
+    text-align: center;
+}
+div.btnArea > strong {
+    margin-right: 10px;
+}
+div.btnArea > select {
+    display: inline-block;
+    width: 50px;
+}
+.btnSearch {
+    display: inline-block;
+    width: 60px;
+}
+.btnSearch::before {
+    content: 'z';
+    font-family: "libraryIcon";
+    position: relative;
+    top: 2px;
+    left: -3px;
+}
